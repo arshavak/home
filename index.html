@@ -11,12 +11,22 @@
        
     }
     html::-webkit-scrollbar{display: none;}
-    body{
-/*         background-color: #ffe; */
-        background-image: url("shiva.png");
-        background-size: cover;
-        margin: 0px;
-    }
+    body {
+  margin: 0;
+  height: 100vh; /* सुनिश्चित करें कि पेज पूरा व्यूपोर्ट ले */
+  display: flex;
+  justify-content: flex-end; /* राइट साइड पर कंटेंट को रखें */
+  align-items: center; /* वर्टिकल सेंट्रिंग */
+}
+
+.background-image {
+  width: 200px;
+  height: 200px;
+  background-image: url('shiva.png');
+  background-size: cover; /* इमेज को कंटेनर के भीतर फिट करें */
+  background-repeat: no-repeat;
+}
+
  .links:hover{
     background-color: green;
     color: white;
@@ -60,6 +70,7 @@
    <center><div id="container">
    </div></center>
    <br>
+    <div class="background-image"></div>
    <footer class="footer">
 <marquee id='footerlinks'>
 </marquee>
