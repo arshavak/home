@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>localhost</title>
+</head>
+<style>
+    *{
+        text-align: center;
+       
+    }
+    html::-webkit-scrollbar{display: none;}
+    body{
+        background-color: #ffe;
+        margin: 0px;
+    }
+ .links:hover{
+    background-color: green;
+    color: white;
+    transform: scale(1.1);
+ }
+    .links{
+  
+        transition: .1s ease-out;
+        padding: 15px;
+        display: inline-block;
+        background-color: #d4ff0033;
+        margin: 10px;
+        color: black;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        width: 150px;
+        border-radius: 37px;
+    }
+#container{
+    width: 90%;
+    margin: auto;
+    background-color: white;
+    max-width: 800px;
+    border-radius: 37px;
+}
+.footer{
+    background-color: #4b4d4d;
+    position: relative;
+    height: auto;
+    margin-left:0px;
+    margin-right:0px;
+    margin-bottom:0px;
+    color: #eee;
+    padding: 5px;
+}
+</style>
+<body>
+    <center><h1>My Apps</h1></center>
+    <center><h2>Under Local Web Sites</h2></center>
+   <center><div id="container">
+   </div></center>
+   <br>
+   <footer class="footer">
+<marquee id='footerlinks'>
+</marquee>
+<h3>copyright @2023</h3>
+   </footer>
+</body>
+<script>
+const container =document.getElementById("container");
+// const footerlinks = document.getElementById("footerlinks");
+function createLinks() {
+  // Create an array of objects with URL and link text
+  const links = [
+{ url: 'https://arshavak.github.io/bhagavadgita/', text: 'Bhagavadgita' },
+{ url: 'https://arshavak.github.io/pingala_chhand_shastram/', text: 'pingala_chhand_shastram' },
+{ url: 'https://arshavak.github.io/exampel/', text: 'vikriti_path_creater' }
+
+  ];
+  // Loop through the array and create links
+  for (let i = 0; i < links.length; i++) {
+    const link = document.createElement('a');
+    // link.setAttribute('target', '_blank');
+    link.setAttribute('class', 'links');
+    link.href = links[i].url;
+    link.textContent = links[i].text;
+container.appendChild(link);
+  }
+}
+// Call the function to create links
+createLinks();
+
+</script>
+
+</html>
