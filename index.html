@@ -96,7 +96,7 @@ color: #f5f7fa;
                 <div class="translation">(${translation})</div>
                 <div class="buttons">
                     <button class="button" onclick="downloadQuote(this.parentElement.parentElement)">Download</button>
-                    <button class="button" id="whatsappShareButton" onclick="shareQuote('${topic}', '${quote}', '${translation}')">Share</button>
+                    <button class="button whatsappShareButton" onclick="shareQuote('${topic}', '${quote}', '${translation}')">Share</button>
                 </div>
             `;
 
@@ -133,7 +133,7 @@ color: #f5f7fa;
         }
 
 
-document.getElementById('whatsappShareButton').addEventListener('click', () => {
+document.querySelectorAll('.whatsappShareButton').addEventListener('click', () => {
     const topic = "Topic of the Quote";
     const quote = "This is an amazing quote.";
     const translation = "Translation of the quote.";
