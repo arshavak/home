@@ -96,7 +96,7 @@ color: #f5f7fa;
                 <div class="translation">(${translation})</div>
                 <div class="buttons">
                     <button class="button" onclick="downloadQuote(this.parentElement.parentElement)">Download</button>
-                    <button class="button" onclick="shareQuote('${topic}', '${quote}', '${translation}')">Share</button>
+                    <button class="button" id="whatsappShareButton" onclick="shareQuote('${topic}', '${quote}', '${translation}')">Share</button>
                 </div>
             `;
 
@@ -133,29 +133,19 @@ color: #f5f7fa;
         }
 
 
-
-        function shareQuote(topic, quote, translation, url = window.location.href) {
+document.getElementById('whatsappShareButton').addEventListener('click', () => {
+    const topic = "Topic of the Quote";
+    const quote = "This is an amazing quote.";
+    const translation = "Translation of the quote.";
     const text = `${topic}\n${quote}\n(${translation})`;
 
-    if (navigator.share) {
-        navigator.share({
-            title: 'Quote',
-            text: text,
-            url: url
-        }).catch(err => {
-            console.log('Sharing failed:', err);
-            alert('Unable to share. Please try again.');
-        });
-    } else {
-        // Fallback: Copy to clipboard
-        const fallbackText = `${text}\n${url}`;
-        navigator.clipboard.writeText(fallbackText).then(() => {
-            alert('Sharing is not supported on this browser. The quote has been copied to your clipboard.');
-        }).catch(() => {
-            alert('Sharing is not supported and copying to clipboard failed.');
-        });
-    }
-}
+    // WhatsApp URL format
+    const whatsappURL = `https://wa.me/?text=${encodeURIComponent(text)}`;
+
+    // Open the WhatsApp share URL
+    window.open(whatsappURL, '_blank');
+});
+        
     </script>
 </body>
 </html>
