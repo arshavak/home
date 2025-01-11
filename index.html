@@ -132,20 +132,30 @@ color: #f5f7fa;
             link.click();
         }
 
-        function shareQuote(topic, quote, translation) {
-            const text = `"${topic}\n${quote}\n(${translation})"`;
-            const url = window.location.href;
 
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Quote',
-                    text: text,
-                    url: url
-                }).catch(err => console.log('Sharing failed:', err));
-            } else {
-                alert('Sharing is not supported on this browser.');
-            }
-        }
+
+        function shareQuote(topic, quote, translation, url = window.location.href) {
+    const text = `${topic}\n${quote}\n(${translation})`;
+
+    if (navigator.share) {
+        navigator.share({
+            title: 'Quote',
+            text: text,
+            url: url
+        }).catch(err => {
+            console.log('Sharing failed:', err);
+            alert('Unable to share. Please try again.');
+        });
+    } else {
+        // Fallback: Copy to clipboard
+        const fallbackText = `${text}\n${url}`;
+        navigator.clipboard.writeText(fallbackText).then(() => {
+            alert('Sharing is not supported on this browser. The quote has been copied to your clipboard.');
+        }).catch(() => {
+            alert('Sharing is not supported and copying to clipboard failed.');
+        });
+    }
+}
     </script>
 </body>
 </html>
