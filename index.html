@@ -133,18 +133,39 @@ color: #f5f7fa;
         }
 
 
-document.querySelectorAll('.whatsappShareButton').addEventListener('click', () => {
+// 1. Get all share buttons
+function getAllShareButtons() {
+    return document.querySelectorAll('.whatsappShareButton');
+}
+
+// 2. Create WhatsApp share text
+function createWhatsAppText() {
     const topic = "Topic of the Quote";
     const quote = "This is an amazing quote.";
     const translation = "Translation of the quote.";
-    const text = `${topic}\n${quote}\n(${translation})`;
+    return `${topic}\n${quote}\n(${translation})`;
+}
 
-    // WhatsApp URL format
-    const whatsappURL = `https://wa.me/?text=${encodeURIComponent(text)}`;
+// 3. Generate WhatsApp share URL
+function generateWhatsAppURL(text) {
+    return `https://wa.me/?text=${encodeURIComponent(text)}`;
+}
 
-    // Open the WhatsApp share URL
-    window.open(whatsappURL, '_blank');
-});
+// 4. Add click event to buttons
+function addClickEventToButtons() {
+    const buttons = getAllShareButtons();
+    const text = createWhatsAppText();
+    const whatsappURL = generateWhatsAppURL(text);
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            window.open(whatsappURL, '_blank');
+        });
+    });
+}
+
+// Call the main function to add events
+addClickEventToButtons();
         
     </script>
 </body>
